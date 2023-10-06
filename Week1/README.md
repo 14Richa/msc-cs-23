@@ -48,7 +48,7 @@ What is the complexity of the deletion operation in the worst case in terms of k
 
 ##### Solution 
 
-If 'j' is in 'A' I will remove the element at index 'j' from 'A.' and to fill the gap left by the removed element, by taking the smallest element from 'H' and put it into 'A' and sort A.
+If 'j' is in 'A' I will remove the element at index 'j' from 'A.' and to fill the gap left by the removed element I will take the smallest element from 'H' and put it into 'A' and sort A.
 
 
 ```
