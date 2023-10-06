@@ -57,9 +57,9 @@ DeleteFromA(j):
         # remove the element at index 'j' from 'A.'
         A.pop(j)
         # get the smallest element from 'H.'
-        smallest_from_H = H[1]  # The root of the min-heap 'H' is the smallest element.
+        smallest_from_H = H[1]  # The root of the min-heap is the smallest element.
         # remove the smallest element from 'H'.
-        Delete(H, 1)
+        delete(H, 1)
         # insert the smallest element from 'H' into 'A' at index 'j.'
         A.insert(j, smallest_from_H)
         # sort A
