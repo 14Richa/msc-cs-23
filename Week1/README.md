@@ -14,8 +14,6 @@ In this case, I'm dealing with the k smallest elements, which are stored in 'A'.
 
 - Case 2 : Element 'j' belongs to 'H':
 
-If 'A' is already full, I need to decide whether 'j' belongs to 'A' or 'H'. To do this, I compare 'j' with the largest element in 'A'. If 'j' is smaller than the largest element in 'A', it means 'j' should be part of 'A'. In this case, I will remove the largest element from 'A', add 'j' to 'A', and sort 'A'.
-
 If 'j' is larger than the kth largest element in 'A', it means 'j' doesn't belong to 'A', and we insert it into the min-heap 'H'.
 Below is the pseudocode:
 
@@ -28,19 +26,9 @@ Insert_element(j):
         # sort A.
         Sort(A)
     else:
-        # compare j with the largest element in A.
-        if j <= A[k - 1]:
-            # j belongs to A because it's smaller to the largest element in A.
-            # remove the largest element from A.
-            A.pop()
-            # Insert j into A.
-            A.append(j)
-            # sort A
-            Sort(A)
-        else:
-            # j belongs to H as it's larger than the kth smallest element in A.
-            # insert j into the min-heap H.
-            Insert(H, j)
+        # j belongs to H as it's larger than the kth largest element in A.
+        # insert j into the min-heap H.
+        Insert(H, j)
 ```
 
 > The worst-case time complexities are:
