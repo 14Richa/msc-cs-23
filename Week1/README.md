@@ -14,7 +14,8 @@ In this case, I'm dealing with the k smallest elements, which are stored in 'A'.
 
 - Case 2 : Element 'j' belongs to 'H':
 
-If 'j' is larger than the kth largest element in 'A', it means 'j' doesn't belong to 'A', and we insert it into the min-heap 'H'.
+If 'j' is larger than the kth largest element in 'A', it means 'j' doesn't belong to 'A', and we insert it into the min-heap 'H' and then run a function(heapify) to maintain the heap property.
+
 Below is the pseudocode:
 
 ```
@@ -66,7 +67,7 @@ What is the complexity of the deletion operation in the worst case in terms of k
 
 ##### Solution 
 
-If 'j' is in 'A' I will remove the element at index 'j' from 'A.' and to fill the gap left by the removed element I will take the smallest element from 'H' and put it into 'A' and sort A.
+If 'j' is in 'A' I will remove the element at index 'j' from 'A.' and to fill the gap left by the removed element I will take the smallest element from 'H' and put it into 'A' and run a function(heapify) to maintain the heap property.
 
 
 ```
@@ -99,4 +100,4 @@ heapify(H):
           heapify(H, smallest)
 ```
 
-> The worst-case time complexity of the deletion operation is O(log k).
+> The worst-case time complexity of the deletion operation is O(log n).
