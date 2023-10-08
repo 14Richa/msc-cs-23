@@ -31,22 +31,21 @@ Insert_element(j):
         # check if heap property is unchanged by calling heapify function 
         heapify(H)
 
-        heapify(H):
-          i = len(H) // 2
-          while i >= 1:
-            left_child = 2 * i
-            right_child = 2 * i + 1
-            smallest = i
-            # compare the current element to its children.
-            if left_child < len(H) and H[left_child] < H[smallest]:
-              smallest = left_child
-            if right_child < len(H) and H[right_child] < H[smallest]:
-              smallest = right_child
-
-            # If the current node is not the smallest, change it with the smallest child.
-            if smallest != i:
-              change H[i] and H[smallest]
-              heapify(H, smallest)
+heapify(H):
+      i = len(H) // 2
+      while i >= 1:
+        left_child = 2 * i
+        right_child = 2 * i + 1
+        smallest = i
+        # compare the current element to its children.
+        if left_child < len(H) and H[left_child] < H[smallest]:
+          smallest = left_child
+        if right_child < len(H) and H[right_child] < H[smallest]:
+          smallest = right_chil 
+        # If the current node is not the smallest, change it with the smallest child.
+        if smallest != i:
+          change H[i] and H[smallest]
+          heapify(H, smallest)
 
 ```
 
@@ -71,18 +70,33 @@ If 'j' is in 'A' I will remove the element at index 'j' from 'A.' and to fill th
 
 
 ```
-DeleteFromA(j):
+Delete(j):
     if 0 <= j < k:
         # remove the element at index 'j' from 'A.'
         A.pop(j)
-        # get the smallest element from 'H.'
-        smallest_from_H = H[1]  # The root of the min-heap is the smallest element.
-        # remove the smallest element from 'H'.
-        delete(H, 1)
-        # insert the smallest element from 'H' into 'A' at index 'j.'
-        A.insert(j, smallest_from_H)
-        # sort A
-        Sort(A)
+        else:
+        # remove the element at index j from the H.
+        delete(H, j)
+        # if the largest element in A is greater than the smallest element in H, change them.
+        if A[k - 1] > H[1]:
+          change A[k - 1] and H[1]
+          heapify(H)
+
+heapify(H):
+      i = len(H) // 2
+      while i >= 1:
+        left_child = 2 * i
+        right_child = 2 * i + 1
+        smallest = i
+        # compare the current element to its children.
+        if left_child < len(H) and H[left_child] < H[smallest]:
+          smallest = left_child
+        if right_child < len(H) and H[right_child] < H[smallest]:
+          smallest = right_chil 
+        # If the current node is not the smallest, change it with the smallest child.
+        if smallest != i:
+          change H[i] and H[smallest]
+          heapify(H, smallest)
 ```
 
-> The worst-case time complexity of the deletion operation is O(k * log(k)).
+> The worst-case time complexity of the deletion operation is O(log k).
