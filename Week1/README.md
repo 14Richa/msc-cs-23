@@ -28,7 +28,7 @@ Insert_element(j):
     else:
         # insert j into the min-heap H.
         Insert(H, j)
-        # check if heap property is unchanged by call heapify function 
+        # check if heap property is unchanged by calling heapify function 
         heapify(H)
 
         heapify(H):
