@@ -28,7 +28,26 @@ Insert_element(j):
     else:
         # insert j into the min-heap H.
         Insert(H, j)
-        # check if heap property is unchanged 
+        # check if heap property is unchanged by call heapify function 
+        heapify(H)
+
+        heapify(H):
+          i = len(H) // 2
+          while i >= 1:
+            left_child = 2 * i
+            right_child = 2 * i + 1
+            smallest = i
+            # compare the current element to its children.
+            if left_child < len(H) and H[left_child] < H[smallest]:
+              smallest = left_child
+            if right_child < len(H) and H[right_child] < H[smallest]:
+              smallest = right_child
+
+            # If the current node is not the smallest, change it with the smallest child.
+            if smallest != i:
+              change H[i] and H[smallest]
+              heapify(H, smallest)
+
 ```
 
 > The worst-case time complexities are:
