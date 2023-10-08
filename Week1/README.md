@@ -28,6 +28,7 @@ Insert_element(j):
     else:
         # insert j into the min-heap H.
         Insert(H, j)
+        # check if heap property is unchanged 
 ```
 
 > The worst-case time complexities are:
