@@ -26,7 +26,6 @@ Insert_element(j):
         # sort A.
         Sort(A)
     else:
-        # j belongs to H as it's larger than the kth largest element in A.
         # insert j into the min-heap H.
         Insert(H, j)
 ```
