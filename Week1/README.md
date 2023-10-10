@@ -71,16 +71,18 @@ If 'j' is in 'A' I will remove the element at index 'j' from 'A.' and to fill th
 
 
 ```
-Delete(j):
+delete(j):
     if 0 <= j < k:
-        # remove the element at index 'j' from 'A.'
-        A.pop(j)
-        else:
+        # swap the element at index j with the last element in A.
+        swap A[j] and A[-1]
+        # remove the last element from A.
+        A.pop()
+    else:
         # remove the element at index j from the H.
         delete(H, j)
         # if the largest element in A is greater than the smallest element in H, change them.
         if A[k - 1] > H[1]:
-          change A[k - 1] and H[1]
+          swap A[k - 1] and H[1]
           heapify(H)
 
 heapify(H):
@@ -93,11 +95,11 @@ heapify(H):
         if left_child < len(H) and H[left_child] < H[smallest]:
           smallest = left_child
         if right_child < len(H) and H[right_child] < H[smallest]:
-          smallest = right_chil 
+          smallest = right_child
         # If the current node is not the smallest, change it with the smallest child.
         if smallest != i:
-          change H[i] and H[smallest]
+          swap H[i] and H[smallest]
           heapify(H, smallest)
 ```
 
-> The worst-case time complexity of the deletion operation is O(log n).
+> The worst-case time complexity of the deletion operation is O(log k).
