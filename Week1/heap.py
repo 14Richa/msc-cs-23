@@ -23,11 +23,16 @@ class MinHeap:
         assert index >= 1
         if index == 1:
             return
-
+        
+        # your code here
         parent = index // 2
+        if len(self.H) == 2:
+            return
+        
         if self.H[index] < self.H[parent]:
             self.H[index], self.H[parent] = self.H[parent], self.H[index]
-            self.bubble_up(parent)
+            
+        self.bubble_up(parent)
 
     # bubble_down function at index
     def bubble_down(self, index):
@@ -36,6 +41,10 @@ class MinHeap:
         rchild_index = 2 * index + 1
         # code up your algorithm here
         # your code here
+
+        # if only 1 element left 
+        if len(self.H) == 2:
+            return
         smallest_index = index
         if lchild_index < len(self.H) and self.H[lchild_index] < self.H[smallest_index]:
             smallest_index = lchild_index
@@ -45,7 +54,8 @@ class MinHeap:
         # If the smallest child is not the current node, swap them and continue bubbling down
         if smallest_index != index:
             self.H[index], self.H[smallest_index] = self.H[smallest_index], self.H[index]
-            self.bubble_down(smallest_index)
+
+        self.bubble_down(smallest_index)
 
     # Function: heap_insert
     # Insert elt into heap
@@ -61,6 +71,7 @@ class MinHeap:
     # delete the smallest element in the heap. Use bubble_up/bubble_down
     def delete_min(self):
         # your code here
+        assert len(self.H) > 1, "Cannot delete from empty heap"
         self.H[1] = self.H[-1]
         self.H.pop()  # remove the last element
 
