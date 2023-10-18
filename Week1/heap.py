@@ -31,7 +31,7 @@ class MinHeap:
         
         if self.H[index] < self.H[parent]:
             self.H[index], self.H[parent] = self.H[parent], self.H[index]
-            
+
         self.bubble_up(parent)
 
     # bubble_down function at index
@@ -88,3 +88,100 @@ my_heap.insert(20)
 
 minimum_element = my_heap.min_element()
 print("Minimum element:", minimum_element)
+
+
+class TopKHeap:
+    
+    # The constructor of the class to initialize an empty data structure
+    def __init__(self, k):
+        self.k = k
+        self.A = []
+        self.H = MinHeap()
+        
+    def size(self): 
+        return len(self.A) + (self.H.size())
+    
+    def get_jth_element(self, j):
+        assert 0 <= j < self.k-1
+        assert j < self.size()
+        return self.A[j]
+    
+    def satisfies_assertions(self):
+        # is self.A sorted
+        for i in range(len(self.A) -1 ):
+            assert self.A[i] <= self.A[i+1], f'Array A fails to be sorted at position {i}, {self.A[i], self.A[i+1]}'
+        # is self.H a heap (check min-heap property)
+        self.H.satisfies_assertions()
+        # is every element of self.A less than or equal to each element of self.H
+        for i in range(len(self.A)):
+            assert self.A[i] <= self.H.min_element(), f'Array element A[{i}] = {self.A[i]} is larger than min heap element {self.H.min_element()}'
+        
+    # Function : insert_into_A
+    # This is a helper function that inserts an element `elt` into `self.A`.
+    # whenever size is < k,
+    #       append elt to the end of the array A
+    # Move the element that you just added at the very end of 
+    # array A out into its proper place so that the array A is sorted.
+    # return the "displaced last element" jHat (None if no element was displaced)
+    def insert_into_A(self, elt):
+        print("k = ", self.k)
+        assert(self.size() < self.k)
+        self.A.append(elt)
+        # code up your algorithm
+        # your code here
+        index = len(self.A) - 1
+        while index > 0 and self.A[index] < self.A[index-1]: 
+          self.A[index], self.A[index-1] = self.A[index-1], self.A[index]
+          index -= 1
+
+        return self.A[-1]
+    
+            
+    # Function: insert -- insert an element into the data structure.
+    # Code to handle when self.size < self.k is already provided
+    def insert(self, elt):
+        size = self.size()
+        # If we have fewer than k elements, handle that in a special manner
+        if size <= self.k:
+            self.insert_into_A(elt)
+            return 
+        # Code up your algorithm here.
+        # your code here
+
+        if elt > self.H.min_element():
+            temp = self.H.delete_min()
+            self.insert_into_A(elt)
+            self.H.insert(temp)
+        else:
+            self.H.insert(elt)
+
+        if self.A[-1] < self.A[-2]:
+            self.A[-1], self.A[-2] = self.A[-2], self.A[-1]
+            index = len(self.A) - 2
+            while index > 0 and self.A[index] < self.A[index - 1]:
+                self.A[index], self.A[index - 1] = self.A[index - 1], self.A[index]
+                index -= 1
+
+        
+    # Function: Delete top k -- delete an element from the array A
+    # In particular delete the j^{th} element where j = 0 means the least element.
+    # j must be in range 0 to self.k-1
+    def delete_top_k(self, j):
+        k = self.k
+        assert self.size() > k # we need not handle the case when size is less than or equal to k
+        assert j >= 0
+        assert j < self.k
+
+        # your code here
+        # Delete element at index j
+        temp = self.A[j]
+        self.A[j] = self.A[-1]
+        self.A.pop()
+
+        # Bubble down to maintain sorted order
+        index = j
+        while index < len(self.A) - 1 and self.A[index] > self.A[index + 1]:
+            self.A[index], self.A[index + 1] = self.A[index + 1], self.A[index]
+            index += 1
+        
+        self.H.insert(temp)
