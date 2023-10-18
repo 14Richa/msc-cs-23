@@ -161,7 +161,6 @@ class TopKHeap:
             while index > 0 and self.A[index] < self.A[index - 1]:
                 self.A[index], self.A[index - 1] = self.A[index - 1], self.A[index]
                 index -= 1
-
         
     # Function: Delete top k -- delete an element from the array A
     # In particular delete the j^{th} element where j = 0 means the least element.
@@ -183,5 +182,5 @@ class TopKHeap:
         while index < len(self.A) - 1 and self.A[index] > self.A[index + 1]:
             self.A[index], self.A[index + 1] = self.A[index + 1], self.A[index]
             index += 1
-        
+            
         self.H.insert(temp)
