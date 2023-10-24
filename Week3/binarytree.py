@@ -62,14 +62,29 @@ class Node:
         # your code here
         found, parent = self.search(key)
         if found:
-            return None
-        
+            return None        
         new_node = Node(key, parent)
-
         if key < parent.key:
             parent.left = new_node
         else:
-            parent.right = new_node
-        
+            parent.right = new_node        
         return new_node
+    
+    # TODO: Complete algorithm to compute height of the tree
+    # height of a node whose children are both None is defined
+    # to be 1.
+    # height of any other node is 1 + maximum of the height 
+    # of its children.
+    # Return a number that is the height.
+    def height(self):
+        # your code here
+        if self.left is None and self.right is None:
+            return 1
+        left_height = 0
+        if self.left:
+            left_height = self.left.height()
+        right_height = 0  
+        if self.right:
+            right_height = self.right.height()
+        return 1 + max(left_height, right_height)
     
