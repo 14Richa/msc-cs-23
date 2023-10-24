@@ -52,4 +52,24 @@ class Node:
             else:
               return (False, self)
     
+    #TODO: Complete the insert algorithm below
+    # To insert first search for it and find out
+    # the parent whose child the currently inserted key will be.
+    # Create a new node with that key and insert.
+    # return None if key already exists in the tree.
+    # return the new node corresponding to the inserted key otherwise.
+    def insert(self, key):
+        # your code here
+        found, parent = self.search(key)
+        if found:
+            return None
+        
+        new_node = Node(key, parent)
+
+        if key < parent.key:
+            parent.left = new_node
+        else:
+            parent.right = new_node
+        
+        return new_node
     
