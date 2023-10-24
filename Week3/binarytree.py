@@ -1,3 +1,4 @@
+import random
 # Week 3 - In class activity
 
 class Node: 
@@ -141,3 +142,26 @@ class Node:
             else:
                 successor.parent.right = None
             del successor
+
+# Week 3 - Task
+
+# 1. make list of  numbers from 0 to n-1
+# 2. randomly shuffle the list
+# 3. insert the random list elements in order into a tree.
+# 4. return the height of the resulting ree.
+def run_single_experiment(n):
+    # your code here
+    # list of numbers from 0 to n-1
+    numbers = list(range(n))
+    # randomly shuffle the list
+    random.shuffle(numbers)
+    # insert the random list elements in order into a tree.
+    root = Node(numbers[0])
+    for i in range(1, len(numbers)):
+        root.insert(numbers[i])
+    # height of the resulting ree.
+    return root.height()
+   
+def run_multiple_trials(n, numTrials):
+    lst_of_depths = [run_single_experiment(n) for j in range(numTrials)]
+    return (sum(lst_of_depths)/len(lst_of_depths), lst_of_depths)
