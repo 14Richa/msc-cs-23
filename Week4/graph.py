@@ -130,3 +130,21 @@ def num_connected_components(g):
             dfs_visit(i)
 
     return num_components[0]
+
+
+def find_all_nodes_in_cycle(g):
+    set_of_nodes = set()
+    # your code here
+
+    parents, back_edges, _, _ = g.dfs_traverse_graph()
+
+    for (backtrack_vertex, target_vertex) in back_edges:
+        if parents[backtrack_vertex] != target_vertex:
+            curr = backtrack_vertex
+            while curr != target_vertex:
+                set_of_nodes.add(curr)
+                curr = parents[curr]
+            set_of_nodes.add(target_vertex)
+            set_of_nodes.add(backtrack_vertex)
+
+    return set_of_nodes
