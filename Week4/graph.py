@@ -102,3 +102,31 @@ class UndirectedGraph:
         non_trivial_back_edges = [(i, j) for (
             i, j) in dfs_back_edges if dfs_tree_parents[i] != j]
         return (dfs_tree_parents, non_trivial_back_edges, discovery_times, finish_times)
+
+
+def num_connected_components(g):
+    dfs_timer = DFSTimeCounter()
+    discovery_times = [None] * g.n
+    dfs_tree_parents = [None] * g.n
+    num_components = [0]  # Mutable list to store the number of components
+
+    def dfs_visit(i):
+        discovery_times[i] = dfs_timer.get()
+        dfs_timer.increment()
+
+        for j in g.get_neighboring_vertices(i):
+            if discovery_times[j] is None:
+                dfs_tree_parents[j] = i
+                dfs_visit(j)
+
+        finish_times[i] = dfs_timer.get()
+        dfs_timer.increment()
+
+    finish_times = [None] * g.n
+
+    for i in range(g.n):
+        if discovery_times[i] is None:
+            num_components[0] += 1
+            dfs_visit(i)
+
+    return num_components[0]
