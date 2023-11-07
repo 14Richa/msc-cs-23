@@ -81,12 +81,10 @@ def compute_mst(g):
     mst_edges = []
     g.sort_edges()
     # your code here
-    d = DisjointForests(g.n)
 
     for i in range(g.n):
         d.make_set(i)
 
-    mst_edges = []
     mst_weight = 0
 
     edges = g.sort_edges()
@@ -102,6 +100,22 @@ def compute_mst(g):
             d.union(i, j)
 
     return mst_edges, mst_weight
+
+
+def compute_scc(g, W):
+    d = DisjointForests(g.n)
+
+    # your code here
+    for i in range(g.n):
+        d.make_set(i)
+
+    for edge in g.sort_edges():
+        i, j, wij = edge
+        if wij <= W:
+            d.union(i, j)
+    # extract a set of sets from d
+    return d.dictionary_of_sets()
+
 
 class UndirectedGraph:
 
