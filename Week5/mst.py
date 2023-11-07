@@ -101,10 +101,10 @@ def compute_mst(g):
 
     return mst_edges, mst_weight
 
-
 def compute_scc(g, W):
+    # create a disjoint forest with as many elements as number of vertices
+    # Next compute the strongly connected components using the disjoint forest data structure
     d = DisjointForests(g.n)
-
     # your code here
     for i in range(g.n):
         d.make_set(i)
@@ -113,9 +113,9 @@ def compute_scc(g, W):
         i, j, wij = edge
         if wij <= W:
             d.union(i, j)
+            
     # extract a set of sets from d
     return d.dictionary_of_sets()
-
 
 class UndirectedGraph:
 
